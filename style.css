@@ -1,42 +1,147 @@
+/* 引入 Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+:root {
+    /* 背景色：柔和的米金 */
+    --bg-color: #fdf6e3;       
+    /* 卡片色：更明亮的奶油白，产生色差 */
+    --card-bg: #fffcf5;        
+    --text-color: #5c4b37;     
+    --header-color: #3e2f1e;   
+    --accent-color: #e67e22;   
+    --link-color: #d35400;     
+    --border-color: #eee8d5;   /* 极浅的分割线 */
+    --shadow-color: rgba(184, 172, 145, 0.2); /* 暖褐色阴影 */
+}
+
 body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+    /* 默认字体组合 */
+    font-family: 'Noto Sans SC', "PingFang SC", sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.8;
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* 标题字体采用优雅的 EB Garamond */
+h1, h2, h3 {
+    font-family: 'EB Garamond', serif;
+    letter-spacing: 0.02em;
 }
 
 header {
-    background-color: #007bff;
-    color: white;
+    margin-bottom: 40px;
     text-align: center;
-    padding: 1em 0;
 }
 
-main {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2em;
-}
-
+/* --- 卡片化模块 --- */
 section {
-    margin-bottom: 2em;
+    background-color: var(--card-bg);
+    border-radius: 16px; /* 圆润的边角 */
+    padding: 40px;
+    margin-bottom: 30px;
+    border: 1px solid var(--border-color);
+    /* 软阴影增加悬浮感 */
+    box-shadow: 0 10px 30px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+section:hover {
+    transform: translateY(-4px); /* 悬浮交互 */
+    box-shadow: 0 15px 35px rgba(184, 172, 145, 0.3);
 }
 
 h2 {
-    border-bottom: 2px solid #007bff;
-    padding-bottom: 0.5em;
+    font-size: 1.8em;
+    color: var(--header-color);
+    margin-top: 0;
+    margin-bottom: 25px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    display: block;
 }
 
+/* --- 终端打字特效 --- */
+.terminal-container {
+    display: inline-block;
+    background-color: #3e3d32; /* 暖灰黑色 */
+    color: #f8f8f2;
+    font-family: 'Fira Code', 'Courier New', monospace;
+    padding: 12px 24px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    font-size: 1em;
+}
+
+.terminal-text {
+    color: #a6e22e; /* 经典的终端绿 */
+    border-right: 3px solid var(--accent-color);
+    animation: blink-caret .75s step-end infinite;
+    white-space: pre-wrap; /* 支持空格 */
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--accent-color); }
+}
+
+/* --- 图片样式 --- */
+.profile-pic-container {
+    float: right; /* 让图片浮动在文字右侧，增加排版灵活性 */
+    margin-left: 25px;
+    margin-bottom: 15px;
+}
+
+.profile-pic {
+    width: 160px;
+    height: 160px;
+    border-radius: 12px; /* 稍微方正一点的圆角 */
+    border: 4px solid #fff;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    object-fit: cover;
+}
+
+/* --- 列表处理 --- */
 ul {
-    list-style-type: none;
+    padding: 0;
+}
+
+/* 卡片内的子列表（兴趣点） */
+#interests ul li {
+    display: inline-block;
+    background-color: var(--bg-color);
+    margin: 5px;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.95em;
+    border: 1px solid var(--border-color);
+}
+
+/* 博客链接样式 */
+#blog ul li {
+    margin-bottom: 12px;
 }
 
 a {
-    color: #007bff;
+    color: var(--link-color);
     text-decoration: none;
+    font-weight: 500;
+    transition: 0.2s;
 }
 
 a:hover {
-    text-decoration: underline;
+    color: var(--link-hover-color);
+    text-shadow: 0 0 1px var(--link-hover-color);
+}
+
+/* 响应式：小屏下图片居中，取消浮动 */
+@media (max-width: 600px) {
+    .profile-pic-container {
+        float: none;
+        margin: 0 0 20px 0;
+        text-align: center;
+    }
+    section { padding: 25px; }
 }
