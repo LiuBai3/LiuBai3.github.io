@@ -173,6 +173,47 @@
             section { padding: 25px; }
             .terminal-container { font-size: 0.9em; width: 90%; }
         }
+
+        /* --- 灰原哀背景特效 --- */
+        .haibara-bg {
+            position: fixed;
+            bottom: -20px;     /* 稍微超出底部，增加神秘感 */
+            right: 0;
+            width: 400px;      /* 根据图片比例调整宽度 */
+            height: 500px;
+            z-index: -1;       /* 确保在所有卡片层级之下 */
+            
+            /* 替换为你的本地图片路径，建议使用透明背景的 PNG */
+            background-image: url('haibara.png'); 
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: bottom right;
+
+            /* 核心特效：让图片只保留明度信息，融入背景暖色 */
+            mix-blend-mode: luminosity; 
+            
+            /* 初始透明度设低，保持低调 */
+            opacity: 0.15; 
+            
+            /* 增加平滑的过渡动画 */
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            filter: sepia(0.2) contrast(0.9); /* 稍微增加一点点复古质感 */
+        }
+
+        /* 交互特效：当用户阅读到页面底部时，或者鼠标移近时，图片稍微清晰一点 */
+        body:hover .haibara-bg {
+            opacity: 0.25;
+            transform: translateY(-10px);
+        }
+
+        /* 适配移动端：手机上图片太大会遮挡文字，建议缩小或隐藏 */
+        @media (max-width: 768px) {
+            .haibara-bg {
+                width: 200px;
+                height: 300px;
+                opacity: 0.1;
+            }
+        }
     </style>
 </head>
 <body>
@@ -241,5 +282,8 @@
             setTimeout(typeWriter, 600); 
         };
     </script>
+
+    <!-- Background Character Element -->
+    <div class="haibara-bg"></div>
 </body>
 </html>
