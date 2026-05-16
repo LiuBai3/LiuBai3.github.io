@@ -20,6 +20,10 @@
         }
 
         /* --- 2. 基础页面设置 --- */
+        html {
+            scroll-behavior: smooth;   /* 启用平滑滚动特效 */
+        }
+
         body {
             font-family: 'Inter', -apple-system, sans-serif;
             background-color: var(--bg-color);
@@ -27,11 +31,33 @@
             line-height: 1.7;
             max-width: 850px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 20px 20px 40px 20px; /* 调整顶部间距以适配导航栏 */
             transition: all 0.3s ease;
         }
 
-        /* --- 3. 终端打字机特效区域 --- */
+        /* --- 3. 导航栏样式 --- */
+        .navbar {
+            display: flex;
+            justify-content: flex-end;
+            gap: 25px;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .navbar a {
+            color: var(--text-color);
+            font-weight: 500;
+            font-size: 0.95em;
+            transition: color 0.2s ease;
+        }
+
+        .navbar a:hover {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+
+        /* --- 4. 终端打字机特效区域 --- */
         header {
             margin-bottom: 50px;
             text-align: center;
@@ -74,7 +100,7 @@
             50% { border-color: var(--accent-color); }
         }
 
-        /* --- 4. 模块卡片化设计 --- */
+        /* --- 5. 模块卡片化设计 --- */
         section {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -102,7 +128,7 @@
             letter-spacing: 0.05em;
         }
 
-        /* --- 5. 个人照片布局 --- */
+        /* --- 6. 个人照片布局 --- */
         .profile-container {
             display: flex;
             align-items: center;
@@ -124,7 +150,7 @@
             min-width: 250px;
         }
 
-        /* --- 6. 列表与交互元素 --- */
+        /* --- 7. 列表与交互元素 --- */
         ul {
             list-style: none;
             padding: 0;
@@ -141,18 +167,35 @@
             font-weight: 500;
         }
 
-        .blog-list li {
+        .blog-list li, .contact-list li {
             margin-bottom: 15px;
-            padding-left: 20px;
             position: relative;
         }
 
-        /* 自定义列表前缀 */
+        .blog-list li {
+            padding-left: 20px;
+        }
+
+        /* 自定义博客列表前缀 */
         .blog-list li::before {
             content: "→";
             position: absolute;
             left: 0;
             color: var(--accent-color);
+        }
+
+        /* 联系方式排版优化 */
+        .contact-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.05em;
+        }
+
+        .contact-label {
+            font-weight: 600;
+            min-width: 90px;
+            color: var(--header-color);
         }
 
         a {
@@ -163,21 +206,23 @@
         }
 
         a:hover {
-            color: var(--link-hover-color);
+            color: var(--link-color);
             text-decoration: underline;
         }
 
-        /* --- 7. 移动端适配 --- */
+        /* --- 8. 移动端适配 --- */
         @media (max-width: 600px) {
+            .navbar { justify-content: center; gap: 15px; }
             .profile-container { flex-direction: column; text-align: center; }
             section { padding: 25px; }
             .terminal-container { font-size: 0.9em; width: 90%; }
+            .contact-list li { flex-direction: column; align-items: flex-start; gap: 2px; }
         }
 
         /* --- 灰原哀背景特效 --- */
         .haibara-bg {
             position: fixed;
-            bottom: -20px;     /* 稍微超出底部，增加神秘感 */
+            bottom: -20px;    /* 稍微超出底部，增加神秘感 */
             right: 0;
             width: 400px;      /* 根据图片比例调整宽度 */
             height: 500px;
@@ -218,6 +263,14 @@
 </head>
 <body>
 
+    <!-- 顶部导航栏 -->
+    <nav class="navbar">
+        <a href="#intro">About</a>
+        <a href="#interests">Interests</a>
+        <a href="#blog">Writing</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
     <header>
         <!-- 终端风格头部 -->
         <div class="terminal-container">
@@ -244,7 +297,7 @@
             <h2>Research Interests</h2>
             <p>I am passionate about blending mathematical foundations with cutting-edge technology:</p>
             <div>
-                <span class="interest-item">📊 Information Science</span>
+                
                 <span class="interest-item">🧊 3D Reconstruction</span>
                 <span class="interest-item">👤 Digital Humans</span>
                 <span class="interest-item">🤖 Embodied Intelligence</span>
@@ -261,7 +314,27 @@
                 <!-- 预留位置添加更多文章 -->
             </ul>
         </section>
+
+        <!-- 联系方式模块 -->
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>If you are interested in my research or want to chat, feel free to drop a message!</p>
+            <ul class="contact-list">
+                <li>
+                    <span class="contact-label">📧 Email:</span>
+                    <a href="mailto:philomath1729@mail.ustc.edu.cn">philomath1729@mail.ustc.edu.cn</a>
+                </li>
+                <li>
+                    <span class="contact-label">🐙 GitHub:</span>
+                    <a href="https://github.com/liubai3" target="_blank">github.com/LiuBai3</a>
+                </li>
+                
+            </ul>
+        </section>
     </main>
+
+    <!-- 灰原哀背景图片占位（可根据样式中的注释替换路径） -->
+    <div class="haibara-bg"></div>
 
     <script>
         // --- 终端打字机特效逻辑 ---
